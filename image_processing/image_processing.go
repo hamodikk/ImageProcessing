@@ -26,18 +26,20 @@ func ReadImage(path string) image.Image {
 	return img
 }
 
-func WriteImage(path string, img image.Image) {
+func WriteImage(path string, img image.Image) error {
 	outputFile, err := os.Create(path)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer outputFile.Close()
 
 	// Encode the image to the new file
 	err = jpeg.Encode(outputFile, img, nil)
 	if err != nil {
-		panic(err)
+		return err
 	}
+
+	return nil
 }
 
 func Grayscale(img image.Image) image.Image {
