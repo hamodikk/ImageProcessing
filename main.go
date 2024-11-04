@@ -12,10 +12,12 @@ import (
 	"time"
 )
 
+// Initialize to use all available CPU cores
 func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
+// Error handling to check if image files exist
 func checkFileExists(filepath string) error {
 	if _, err := os.Stat(filepath); os.IsNotExist(err) {
 		return fmt.Errorf("file does not exist: %s", filepath)
