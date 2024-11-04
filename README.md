@@ -73,18 +73,18 @@ func checkFileExists(filepath string) error {
 - Created a similar function for loadImage, resize, convertToGrayscale and saveImage to handle concurrent or sequential approaches. I will only give an example for one function as it is implemented in a similar fashion to all four of them.
 
   * Here is the sequential function for resize:
-```go
-func resizeSequential(jobs []Job) []Job {
+  ```go
+  func resizeSequential(jobs []Job) []Job {
 	for i := range jobs {
 		jobs[i].Image = imageprocessing.Resize(jobs[i].Image)
 	}
 	return jobs
-}
-```
+  }
+  ```
 
   * Here is the same function running with goroutines:
-```go
-func resizeConcurrent(input <-chan Job) <-chan Job {
+  ```go
+  func resizeConcurrent(input <-chan Job) <-chan Job {
 	out := make(chan Job)
 	go func() {
 		defer close(out)
@@ -94,8 +94,9 @@ func resizeConcurrent(input <-chan Job) <-chan Job {
 		}
 	}()
 	return out
-}
-```
+  }
+  ```
+
 
 - Added a flag, which defaults the program to run sequentially, allowing us to override it to run the program concurrently using goroutines. I added conditionals later to check for useGoroutines to run the program accordingly.
 ```go
