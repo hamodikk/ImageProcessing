@@ -49,6 +49,11 @@ This will override the default setting to use the goroutines.
 
 The program will handle errors and return "Success!" when the pipeline is complete for each image, as well as return an execution time.
 
+You can also use the built in test functions to test the imageLoad and checkFileExists functions. Run the following:
+```bash
+go test -v
+```
+
 ### Code Explanation
 
 I will not explain the entire code as it is modified from an original pipeline. I will explain the parts that I have modified and their purposes.
